@@ -22,7 +22,7 @@ class _CategoryState extends State<Category> {
             crossAxisCount: 2,
             childAspectRatio: 1.0,
           ),
-          itemCount: 4,
+          itemCount: category.length,
           itemBuilder: (context, index) => InkWell(
             onTap: () async {
               await APIHelper.apiHelper

@@ -16,8 +16,12 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Quotes For You"),
+        title: Text("Brilliant Quotes"),
         actions: [
+          IconButton(onPressed: (){
+            Get.changeTheme(Get.isDarkMode? ThemeData.light(): ThemeData.dark());
+          }, icon:(Get.isDarkMode)?Icon(Icons.dark_mode_outlined):Icon(Icons.light_mode_outlined)),
+          SizedBox(width: 2,),
           IconButton(
               onPressed: () {
                 Get.toNamed('favorite');
@@ -74,7 +78,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-                      Text(" -  ${APIHelper.apiHelper.datas[0]['author']}")
+                      Text(" -  ${APIHelper.apiHelper.datas[0]['author']}",style: TextStyle(color: Colors.white),)
                     ],
                   )
                 : Center(
@@ -117,8 +121,9 @@ class _HomePageState extends State<HomePage> {
                 ),
                 itemCount: 4,
                 itemBuilder: (context, index) => InkWell(
-                      onTap: () async {
-                        await APIHelper.apiHelper
+                      onTap: () {
+                        APIHelper.apiHelper.allquotes.clear();
+                         APIHelper.apiHelper
                             .fetchcategory(category[index]['name']);
                         Get.toNamed('one', arguments: index);
                       },
@@ -132,7 +137,7 @@ class _HomePageState extends State<HomePage> {
                         child: Center(
                           child: Text(
                             "${category[index]['name']}",
-                            style: TextStyle(fontSize: 18),
+                            style: TextStyle(fontSize: 18,color: Colors.white),
                           ),
                         ),
                       ),

@@ -18,7 +18,11 @@ class Favoritecontroller extends GetxController {
     favoritedata = data
         .map((e) => Favoritemodel(author: '${e['name']}', quote: '${e['quote']}'))
         .toList();
-    print(favoritedata);
+    update();
+  }
+
+  Future<void> deletedata(String quote) async{
+    await DataBaseHelper.dataBaseHelper.deleteData(quote);
     update();
   }
 }

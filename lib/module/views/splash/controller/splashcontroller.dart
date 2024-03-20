@@ -13,7 +13,7 @@ class Splashcontroller extends GetxController {
     await APIHelper.apiHelper
         .fetchquotes()
         .then((value) => Timer(Duration(seconds: 1), () {
-              Get.toNamed('/');
+              Get.offAllNamed('/');
             }));
   }
 }
