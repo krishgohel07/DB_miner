@@ -45,6 +45,7 @@ class _FavoriteState extends State<Favorite> {
                                       .deletedata(favoritecontroller
                                           .favoritedata[index].quote)
                                       .then((value) {
+                                         favoritecontroller.onInit();
                                     Get.snackbar('success',
                                         'Removed From Favorite List');
                                   });

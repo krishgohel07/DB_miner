@@ -16,16 +16,19 @@ class _CategoryState extends State<Category> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Categories"),
+        leading: IconButton(onPressed: (){
+          Get.back();
+        },icon: Icon(Icons.arrow_back_ios_rounded),),
       ),
       body: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             childAspectRatio: 1.0,
           ),
-          itemCount: category.length,
+          itemCount: 10,
           itemBuilder: (context, index) => InkWell(
-            onTap: () async {
-              await APIHelper.apiHelper
+            onTap: (){
+               APIHelper.apiHelper
                   .fetchcategory(category[index]['name']);
               Get.toNamed('one',arguments: index);
             },

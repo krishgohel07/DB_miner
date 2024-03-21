@@ -25,23 +25,27 @@ class APIHelper {
   }
 
   Future<void> fetchcategory(String name) async {
-    print("1");
+    //print("1");
     const apikey = 'oiSNPKmfeKCBwfolykjjxQ==RcM0EYUzNqrFgUhf';
     final api =
         Uri.parse('https://api.api-ninjas.com/v1/quotes?category=$name');
     for (int i = 0; i < 5; i++) {
-      print("2");
+      //print("2");
       http.Response response =
           await http.get(api, headers: {'X-API-Key': apikey});
-      print("3");
+      //print("3");
       if (response.statusCode == 200) {
         String data = response.body;
         tempdata.add(jsonDecode(data));
       }
+    }
+    print(tempdata);
+    for(int i=0;i<tempdata.length;i++) {
       allquotes = tempdata
-          .map((e) => Datamodel(author: e[0]['author'], quote: e[0]['quote']))
+          .map((e) => Datamodel(author: e[i]['author'], quote: e[i]['quote']))
           .toList();
     }
+    print("*****************");
     print("${allquotes.length}");
   }
 }

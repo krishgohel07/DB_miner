@@ -1,6 +1,7 @@
 import 'package:dbminer/module/helper/apihelper/apihelper.dart';
 import 'package:dbminer/module/helper/dbhelper/databasehelper.dart';
 import 'package:dbminer/module/util/utildata.dart';
+import 'package:dbminer/module/views/onescreen/controller/onecontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,6 +16,7 @@ class _OneScreenState extends State<OneScreen> {
   @override
   Widget build(BuildContext context) {
     int index = ModalRoute.of(context)!.settings!.arguments as int;
+    OneController oneController=Get.put(OneController());
     return Scaffold(
       body: Column(
         children: [
@@ -32,9 +34,8 @@ class _OneScreenState extends State<OneScreen> {
                   children: [
                     IconButton(
                       onPressed: () {
-                        APIHelper.apiHelper.allquotes.clear();
-                        print("hiiihelloo${APIHelper.apiHelper.allquotes}");
-                        Get.offAndToNamed('/');
+                        oneController.deletelist();
+                        Get.back();
                       },
                       padding: EdgeInsets.only(top: 30),
                       icon: const Icon(
